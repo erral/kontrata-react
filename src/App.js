@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { ReactiveBase, DataSearch, SingleList, ReactiveList, SingleRange, RangeSlider } from "@appbaseio/reactivesearch";
-import { Row, Col, Container, Card, Button } from 'react-bootstrap';
+import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
+import { Row, Col, Container, Card, Button, Modal, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
+
   return (
     <ReactiveBase
       url="http://localhost:9200"
@@ -33,19 +34,29 @@ function App() {
             />
 
             <RangeSlider
-              componentId="RangeSliderSensor"
-              dataField="res.resolution_0.priceWithVAT"
-              title="Price"
+              componentId="PriceSensor"
+              dataField="resolution_0.priceWithVAT"
+                title="Price"
+                range={{
+                  start: 0,
+                  end: 20000
+                }}
+                rangeLabels={{
+                  start: '0',
+                  end: '20000'
+                }}
               showHistogram={true}
-              showFilter={true}
+              snap={false}
             />
 
           </Col>
           <Col md={8}>
             <DataSearch
             componentId="SearchSensor"
-            dataField={["title"]}
+            dataField={["title", "offerers.name", "winner_0.name"]}
             />
+
+            <SelectedFilters />
 
             <ReactiveList
               componentId="SearchResult"
@@ -56,20 +67,20 @@ function App() {
                     "Authority",
                     "Status",
                     "Type",
-                    "SearchSensor"]
+                    "SearchSensor", "PriceSensor"]
                 }}
               renderItem={(res) =>
+
               <Card>
                 <Card.Body>
-                    <Card.Title>{ res.title }</Card.Title>
-                    <Card.Text>
+                  <Card.Title>{ res.title }</Card.Title>
+                  <Card.Text>
                       Authority: {res.authority}<br/>
                       Status: { res.status }<br />
-                      Budget: {res.budget.keyword}<br />
                       Winner: {res.winner_0?.name}<br />
-                      Price: {res.resolution_0?.priceWithVAT}
+                      Price: {res.resolution_0?.priceWithVAT}<br/>
+                    <Button variant="primary">See more details</Button>
                   </Card.Text>
-                  <Button variant="primary">See more details</Button>
                 </Card.Body>
               </Card>
               }
