@@ -52,8 +52,9 @@ function App() {
           </Col>
           <Col md={8}>
             <DataSearch
-            componentId="SearchSensor"
-            dataField={["title", "offerers.name", "winner_0.name"]}
+              componentId="SearchSensor"
+              dataField={["title", "offerers.name", "winner_0.name"]}
+              autosuggest={false}
             />
 
             <SelectedFilters />
