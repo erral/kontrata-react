@@ -1,8 +1,32 @@
-# Getting Started with Create React App
+# kontrata-react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is the frontend search engine to [kontrata](https://github.com/erral/kontrata) a tool to provide an easy 
+way to search for contracts published at the [Basque Public Administration Public Contracts
+Platform (REVASCON)](https://www.contratacion.euskadi.eus/w32-kpereva/es/y46aRevasconWar/consultaContratosC/filtro?locale=es).
+
+
+## Elastic
+
+You need to have an [Elastic](https://www.elastic.co) server with all the required contracts already indexed there. Have a look
+at [kontrata-docker](https://github.com/erral/kontrata-docker) a docker-compose based repo with the elastic installation.
+
+While I figure how to configure [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), you may need to use a browser
+extension to by-pass CORS. I use [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) for Chrome.
+
+## Work In Progress
+
+This is a Work In Progress. I am not proficient neither in React nor in JavaScript/TypeScript. This has been mainly a copy-and-paste
+based development.
+
+PRs will be welcomed.
+
+When I have something relevant, I may publish it in a website.
 
 ## Available Scripts
+
+Install the dependencies, you can run:
+
+### `yarn`
 
 In the project directory, you can run:
 
