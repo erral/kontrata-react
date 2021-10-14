@@ -9,6 +9,12 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const numberFormat = (value) =>
+  new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(value);
+
   return (
     <ReactiveBase
       url="http://localhost:9200"
@@ -98,7 +104,7 @@ function App() {
                       Authority: {res.authority}<br/>
                       Status: { res.status }<br />
                       Winner: {res.winner_0?.name}<br />
-                      Price: {res.resolution_0?.priceWithVAT}<br/>
+                      Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br/>
                       Offerers: { res.offerers.map((item) => item.name + ', ') } <br/>
                     <Button variant="primary" onClick={handleShow}>See more details</Button>
                   </Card.Text>
