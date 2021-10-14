@@ -75,7 +75,29 @@ function App() {
                     "Status",
                     "Type",
                     "SearchSensor", "PriceSensor"]
-                }}
+              }}
+              sortOptions={[
+                {
+                  label: "Price (low to high)",
+                  dataField: "resolution_0.priceWithVAT",
+                  sortBy: "asc"
+                },
+                {
+                  label: "Price (high to low)",
+                  dataField: "resolution_0.priceWithVAT",
+                  sortBy: "desc"
+                },
+                {
+                  label: "Date (old to new)",
+                  dataField: "date",
+                  sortBy: "asc"
+                },
+                {
+                  label: "Date (new to old)",
+                  dataField: "date",
+                  sortBy: "desc"
+                }
+              ]}
               renderItem={(res) =>
                 <>
               <Card>
