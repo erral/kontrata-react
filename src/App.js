@@ -86,17 +86,8 @@ function App() {
                   label: "Price (high to low)",
                   dataField: "resolution_0.priceWithVAT",
                   sortBy: "desc"
-                },
-                {
-                  label: "Date (old to new)",
-                  dataField: "date",
-                  sortBy: "asc"
-                },
-                {
-                  label: "Date (new to old)",
-                  dataField: "date",
-                  sortBy: "desc"
                 }
+
               ]}
               renderItem={(res) =>
                 <>
