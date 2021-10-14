@@ -84,14 +84,14 @@ function App() {
               }}
               sortOptions={[
                 {
-                  label: "Price (low to high)",
-                  dataField: "resolution_0.priceWithVAT",
-                  sortBy: "asc"
-                },
-                {
                   label: "Price (high to low)",
                   dataField: "resolution_0.priceWithVAT",
                   sortBy: "desc"
+                },
+                {
+                  label: "Price (low to high)",
+                  dataField: "resolution_0.priceWithVAT",
+                  sortBy: "asc"
                 }
 
               ]}
