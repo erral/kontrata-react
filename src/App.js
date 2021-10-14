@@ -108,7 +108,8 @@ function App() {
                       Status: { res.status }<br />
                       Winner: {res.winner_0?.name}<br />
                       Price: {res.resolution_0?.priceWithVAT}<br/>
-                    <Button variant="primary">See more details</Button>
+                      Offerers: { res.offerers.map((item) => item.name + ', ') } <br/>
+                    <Button variant="primary" onClick={handleShow}>See more details</Button>
                   </Card.Text>
                 </Card.Body>
               </Card>
