@@ -101,6 +101,7 @@ function App() {
                 <Card.Body>
                   <Card.Title>{ res.title }</Card.Title>
                   <Card.Text>
+                      ID: {res.id}<br/>
                       Authority: {res.authority}<br/>
                       Status: { res.status }<br />
                       Winner: {res.winner_0?.name}<br />
