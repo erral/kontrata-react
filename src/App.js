@@ -22,6 +22,7 @@ function App() {
               dataField="authority.keyword"
                 title="Authority"
                 sortBy="asc"
+                size={10000}
             />
 
             <SingleList
@@ -44,11 +45,11 @@ function App() {
                 title="Price"
                 range={{
                   start: 0,
-                  end: 20000
+                  end: 1000000
                 }}
                 rangeLabels={{
                   start: '0',
-                  end: '20000'
+                  end: '1000000'
                 }}
               showHistogram={true}
               snap={false}
