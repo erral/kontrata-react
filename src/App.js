@@ -4,6 +4,11 @@ import { Row, Col, Container, Card, Button, Modal, Table } from 'react-bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <ReactiveBase
       url="http://localhost:9200"
@@ -71,7 +76,7 @@ function App() {
                     "SearchSensor", "PriceSensor"]
                 }}
               renderItem={(res) =>
-
+                <>
               <Card>
                 <Card.Body>
                   <Card.Title>{ res.title }</Card.Title>
@@ -84,6 +89,21 @@ function App() {
                   </Card.Text>
                 </Card.Body>
               </Card>
+              <Modal show={show} onHide={handleClose} fullscreen={true}>
+              <Modal.Header closeButton>
+                <Modal.Title>{res.title}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body><pre>{JSON.stringify(res, null, 2)}</pre></Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                  Save Changes
+                </Button>
+              </Modal.Footer>
+            </Modal>
+                </>
               }
               renderResultStats={
                   function(stats){
