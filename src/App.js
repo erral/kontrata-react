@@ -18,7 +18,7 @@ function App() {
   return (
     <ReactiveBase
       url="http://localhost:9200"
-      app="contracts"
+      app="contracts_es"
     >
       <Container>
         <Row>
