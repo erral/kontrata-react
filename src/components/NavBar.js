@@ -6,14 +6,14 @@ import LanguageSelector from "./LanguageSelector";
 
 function Navbar() {
     return (
-        <BootstrapNavbar bg="light" expand="lg" class="mb-5">
+        <BootstrapNavbar bg="light" expand="lg"  className="mb-3">
             <Container>
                 <BootstrapNavbar.Brand>Kontrata</BootstrapNavbar.Brand>
 
                 <BootstrapNavbar.Collapse id="basic-navbar-nav" class="f-r">
                     <Nav className="me-auto">
                         <LanguageSelector />
-                        <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" /></Nav.Link>
+                        <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" size="28px"/></Nav.Link>
                     </Nav>
                 </BootstrapNavbar.Collapse>
             </Container>
