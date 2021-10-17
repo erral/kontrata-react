@@ -63,5 +63,17 @@ Params:
 * size: default: "32px"
 
 Available icons:
-- github <img src="./src/components/Icon/svgs/logo-github.svg" alt="github" width="28px"/>
-- language <img src="./src/components/Icon/svgs/language-outline.svg" alt="github" width="28px"/>
+- github <img src="../src/components/Icon/svgs/logo-github.svg" alt="github" width="28px"/>
+- language <img src="../src/components/Icon/svgs/language-outline.svg" alt="github" width="28px"/>
+
+
+## ⬇️ Footer
+
+**Example:**
+```
+import { Footer } from './components';
+
+<Footer>
+    // HTML elements
+</Footer>
+```

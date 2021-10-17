@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Icon, LanguageSelector} from './components';
+import { Navbar, Icon, LanguageSelector, Footer } from './components';
 import { EXTERNAL_LINKS } from "./constants";
 
 function App() {
@@ -150,6 +150,10 @@ function App() {
           </Row>
         </Container>
       </ReactiveBase>
+      <Footer>
+        <p>Kontrata</p>
+        <a href=""></a>
+        </Footer>
     </>
   );
 }
