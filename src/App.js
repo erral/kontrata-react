@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
-import { Row, Col, Container, Card, Button, Modal, Table } from 'react-bootstrap';
+import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar } from './components';
+import { Navbar, Icon, LanguageSelector} from './components';
+import { EXTERNAL_LINKS } from "./constants";
+
 function App() {
 
   const [show, setShow] = React.useState(false);
@@ -18,7 +20,10 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar>
+        <LanguageSelector />
+        <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" size="28px" /></Nav.Link>
+      </Navbar>
       <ReactiveBase
         url="http://localhost:9200"
         app="contracts_es"

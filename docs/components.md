@@ -1,15 +1,16 @@
 # Available components
 
 ## 🧭 Navbar
-The elements of this component are quite fixed.
-
-It has a web title, language selector and link to the Github repo.
-
 
 **Example:**
 ```
 import { Navbar } from './components';
-<Navbar />
+
+<Navbar>
+    // Items that will be displayed on the right
+    <LanguageSelector />
+    <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" size="28px" /></Nav.Link>
+</Navbar>
 ```
 
 **To change the Github repo link:**
