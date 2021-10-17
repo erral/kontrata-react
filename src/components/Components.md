@@ -32,5 +32,5 @@ Params:
 * size: default: "32px"
 
 Available icons:
-- github <img src="./icon/svgs/logo-github.svg" alt="github" width="28px"/>
-- language <img src="./icon/svgs/language-outline.svg" alt="github" width="28px"/>
+- github <img src="./Icon/svgs/logo-github.svg" alt="github" width="28px"/>
+- language <img src="./Icon/svgs/language-outline.svg" alt="github" width="28px"/>
