@@ -1,6 +1,6 @@
 import React from "react"
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import Icons from "./Icons";
+import Icon from "./Icon";
 function NavBar() {
 
     return (
@@ -14,7 +14,7 @@ function NavBar() {
                             <NavDropdown.Item href="#action/3.1">Euskara</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Español</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#home"><Icons.Github style={{ width: '32px' }} /></Nav.Link>
+                        <Nav.Link href="#home"><Icon name="github"/></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
