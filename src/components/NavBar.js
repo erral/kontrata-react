@@ -1,16 +1,14 @@
 import React from "react"
-import { Navbar as BootstrapNavbar, Container, Nav } from 'react-bootstrap';
+import { Navbar as BootstrapNavbar, Container } from 'react-bootstrap';
 
 function Navbar({ children }) {
     return (
-        <BootstrapNavbar bg="light" expand="lg" className="mb-3">
+        <BootstrapNavbar bg="light" expand="lg" className="mb-3" sticky="top">
             <Container>
                 <BootstrapNavbar.Brand>Kontrata</BootstrapNavbar.Brand>
-
-                <BootstrapNavbar.Collapse id="basic-navbar-nav" class="f-r">
-                    <Nav className="me-auto">
-                        {children}
-                    </Nav>
+                <BootstrapNavbar.Toggle />
+                <BootstrapNavbar.Collapse className="justify-content-end">
+                    {children}
                 </BootstrapNavbar.Collapse>
             </Container>
         </BootstrapNavbar>
