@@ -111,20 +111,24 @@ function App() {
                       </Card.Text>
                     </Card.Body>
                   </Card>
-                  {modalContent && <Modal show={!!modalContent} onHide={handleClose} fullscreen={true}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>{modalContent.title}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Close
-                      </Button>
-                      <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>}
+                 <Modal show={!!modalContent} onHide={handleClose} fullscreen={true}>
+                 {modalContent && 
+                    <>
+                      <Modal.Header closeButton>
+                        <Modal.Title>{modalContent.title}</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                          Save Changes
+                        </Button>
+                      </Modal.Footer>
+                    </>
+                    }
+                  </Modal>
                 </>
               }
               renderResultStats={
