@@ -4,7 +4,8 @@ export const LANGUAGES = {
 }
 
 export const DB_KEYS = {
-    SELECTED_LANGUAGE: 'selected_language'
+    SELECTED_LANGUAGE: 'selected_language',
+    THEME: 'theme'
 }
 
 export const EXTERNAL_LINKS = {

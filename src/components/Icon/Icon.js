@@ -4,8 +4,8 @@ import { IconsGallery } from './icons-gallery';
  * @param {string} name Available icons: github
  * @param {string} size Default size 32px
 */
-function Icon({ name = '', size = '32px' }) {
-    return (<>{name && IconsGallery(name, size)}</>);
+function Icon({ name = '', size = '32px', color = '#161625' }) {
+    return (<>{name && IconsGallery(name, size, color)}</>);
 }
 
 export default Icon;

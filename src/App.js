@@ -4,13 +4,20 @@ import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Icon, LanguageSelector, Footer } from './components';
 import { EXTERNAL_LINKS } from "./constants";
+import './style.css';
+import DarkModeToogle from './components/DarkModeToogle';
 
 function App() {
 
   const [show, setShow] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState(null);
+
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (content) => {
+    setShow(true);
+    setModalContent(content);
+  };
 
   const numberFormat = (value) =>
     new Intl.NumberFormat('es-ES', {
@@ -23,6 +30,7 @@ function App() {
       <Navbar>
         <LanguageSelector />
         <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" size="28px" /></Nav.Link>
+        <DarkModeToogle />
       </Navbar>
       <ReactiveBase
         url="http://localhost:9200"
@@ -115,15 +123,15 @@ function App() {
                           Winner: {res.winner_0?.name}<br />
                           Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
                           Offerers: {res.offerers.map((item) => item.name + ', ')} <br />
-                          <Button variant="primary" onClick={handleShow}>See more details</Button>
+                          <Button variant="primary" onClick={() => handleShow(res)}>See more details</Button>
                         </Card.Text>
                       </Card.Body>
                     </Card>
-                    <Modal show={show} onHide={handleClose} fullscreen={true}>
+                    {modalContent && <Modal show={show} onHide={handleClose} fullscreen={true}>
                       <Modal.Header closeButton>
-                        <Modal.Title>{res.title}</Modal.Title>
+                        <Modal.Title>{modalContent.title}</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body><pre>{JSON.stringify(res, null, 2)}</pre></Modal.Body>
+                      <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
                       <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                           Close
@@ -132,7 +140,7 @@ function App() {
                           Save Changes
                         </Button>
                       </Modal.Footer>
-                    </Modal>
+                    </Modal>}
                   </>
                 }
                 renderResultStats={
@@ -152,8 +160,7 @@ function App() {
       </ReactiveBase>
       <Footer>
         <p>Kontrata</p>
-        <a href=""></a>
-        </Footer>
+      </Footer>
     </>
   );
 }
