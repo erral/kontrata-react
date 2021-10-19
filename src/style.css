@@ -3,19 +3,16 @@
     /* General CSS variables */
     --color-transition-time: 0.3s;
     --default-border-radius: 0.5rem;
+
     /* Light theme variables */
-    --primary-color: #302ae6;
-    --secondary-color: #536390;
     --font-color: #424242;
     --bg-color: #fff;
-    --bg-color-contrast: rgb(230, 230, 230);
-    --heading-color: #292922;
+    --bg-color-contrast: #f5f5f5;
+    --heading-color: #555555;
 }
 
 [data-theme="dark"] {
     /* Dark theme variables */
-    --primary-color: #9a97f3;
-    --secondary-color: #334756;
     --font-color: #eeeeee;
     --bg-color: #222831;
     --bg-color-contrast: #393e46;
@@ -27,8 +24,6 @@ body {
     color: var(--font-color);
     transition: 0.3s ease all;
     font-family: "Ubuntu", sans-serif;
-    /*other styles*/
-    /* ..... */
 }
 
 h1,
@@ -41,8 +36,6 @@ div,
 a {
     color: var(--font-color) !important;
     font-family: "Ubuntu", sans-serif;
-    /*other styles*/
-    /* ..... */
 }
 nav,
 footer,
@@ -76,7 +69,8 @@ a[class*="Button"] {
     background-color: var(--bg-color-contrast);
     border-radius: var(--default-border-radius) !important;
 }
-a[class*="Button"]:hover, a[class*="Button"]:hover span{
+a[class*="Button"]:hover,
+a[class*="Button"]:hover span {
     background-color: var(--heading-color);
     color: var(--bg-color-contrast) !important;
 }
@@ -87,11 +81,15 @@ select[class*="sortOptions"] {
     border-radius: var(--default-border-radius);
 }
 
-input{
-    border-radius: var(--default-border-radius) ;
+input[class*="Input"] {
+    border-radius: var(--default-border-radius);
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    font-size: 1.1rem;
 }
-
-/* input, .card,  */
-/* a {
-    color: var(--primary-color);
-} */
+input[class*="Input"]:focus {
+    background-color: var(--bg-color-contrast);
+}
+input[class*="Input"]::placeholder {
+    color: var(--font-color);
+}
