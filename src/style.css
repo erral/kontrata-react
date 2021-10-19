@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+:root {
+    /* General CSS variables */
+    --color-transition-time: 0.3s;
+    --default-border-radius: 0.5rem;
+
+    /* Light theme variables */
+    --font-color: #424242;
+    --bg-color: #fff;
+    --bg-color-contrast: #f5f5f5;
+    --heading-color: #555555;
+}
+
+[data-theme="dark"] {
+    /* Dark theme variables */
+    --font-color: #eeeeee;
+    --bg-color: #222831;
+    --bg-color-contrast: #393e46;
+    --heading-color: #ffd369;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    transition: 0.3s ease all;
+    font-family: "Ubuntu", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+div,
+a {
+    color: var(--font-color) !important;
+    font-family: "Ubuntu", sans-serif;
+}
+nav,
+footer,
+.dropdown-menu {
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    transition: var(--color-transition-time) ease all;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: var(--bg-color);
+}
+.navbar-light .navbar-brand,
+.nav-link {
+    color: var(--font-color);
+}
+
+.navbar-light .navbar-brand,
+.nav-link svg {
+    fill: var(--font-color);
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.card {
+    background-color: var(--bg-color-contrast);
+    border-radius: var(--default-border-radius);
+}
+a[class*="Button"] {
+    background-color: var(--bg-color-contrast);
+    border-radius: var(--default-border-radius) !important;
+}
+a[class*="Button"]:hover,
+a[class*="Button"]:hover span {
+    background-color: var(--heading-color);
+    color: var(--bg-color-contrast) !important;
+}
+
+select[class*="sortOptions"] {
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    border-radius: var(--default-border-radius);
+}
+
+input[class*="Input"] {
+    border-radius: var(--default-border-radius);
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    font-size: 1.1rem;
+}
+input[class*="Input"]:focus {
+    background-color: var(--bg-color-contrast);
+}
+input[class*="Input"]::placeholder {
+    color: var(--font-color);
+}
