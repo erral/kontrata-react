@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Icon, LanguageSelector, Footer } from './components';
+import { Navbar, Icon, LanguageSelector, Footer, DarkModeToogle } from './components';
 import { EXTERNAL_LINKS } from "./constants";
-import './style.css';
-import DarkModeToogle from './components/DarkModeToogle';
 
 function App() {
 
-  const [show, setShow] = React.useState(false);
   const [modalContent, setModalContent] = React.useState(null);
 
-
-  const handleClose = () => setShow(false);
-  const handleShow = (content) => {
-    setShow(true);
-    setModalContent(content);
-  };
+  const handleClose = () => setModalContent(null);
+  const handleShow = (content) => setModalContent(content);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat('es-ES', {
@@ -109,7 +102,6 @@ function App() {
                     dataField: "resolution_0.priceWithVAT",
                     sortBy: "asc"
                   }
-
                 ]}
                 renderItem={(res) =>
                   <>
@@ -127,20 +119,24 @@ function App() {
                         </Card.Text>
                       </Card.Body>
                     </Card>
-                    {modalContent && <Modal show={show} onHide={handleClose} fullscreen={true}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>{modalContent.title}</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
-                      <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                          Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                          Save Changes
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>}
+                    <Modal show={!!modalContent} onHide={handleClose} fullscreen={true}>
+                      {modalContent &&
+                        <>
+                          <Modal.Header closeButton>
+                            <Modal.Title>{modalContent.title}</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
+                          <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                              Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                              Save Changes
+                            </Button>
+                          </Modal.Footer>
+                        </>
+                      }
+                    </Modal>
                   </>
                 }
                 renderResultStats={
