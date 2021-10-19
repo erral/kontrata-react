@@ -1,6 +1,6 @@
 import React from "react"
 import Icon from './Icon';
-import { DB_KEYS, LANGUAGES } from '../constants';
+import { DB_KEYS } from '../constants';
 import useLocalStorage from "../utils/useLocalStorage";
 import { Button } from "react-bootstrap";
 

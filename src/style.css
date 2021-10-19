@@ -1,37 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
 :root {
-    --primary-color: #302AE6;
+    /* General CSS variables */
+    --color-transition-time: 0.3s;
+    --default-border-radius: 0.5rem;
+    /* Light theme variables */
+    --primary-color: #302ae6;
     --secondary-color: #536390;
     --font-color: #424242;
     --bg-color: #fff;
+    --bg-color-contrast: rgb(230, 230, 230);
     --heading-color: #292922;
 }
 
 [data-theme="dark"] {
-    --primary-color: #9A97F3;
-    --secondary-color: #818cab;
-    --font-color: #e1e1ff;
-    --bg-color: #161625;
-    --heading-color: #818cab;
+    /* Dark theme variables */
+    --primary-color: #9a97f3;
+    --secondary-color: #334756;
+    --font-color: #eeeeee;
+    --bg-color: #222831;
+    --bg-color-contrast: #393e46;
+    --heading-color: #ffd369;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--font-color);
-
+    transition: 0.3s ease all;
+    font-family: "Ubuntu", sans-serif;
     /*other styles*/
     /* ..... */
 }
 
-h1 {
-    color: var(--secondary-color);
-
-    /*other styles*/
-    /* ..... */
-}
-
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+div,
 a {
-    color: var(--primary-color);
-
+    color: var(--font-color) !important;
+    font-family: "Ubuntu", sans-serif;
     /*other styles*/
     /* ..... */
 }
+nav,
+footer,
+.dropdown-menu {
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    transition: var(--color-transition-time) ease all;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: var(--bg-color);
+}
+.navbar-light .navbar-brand,
+.nav-link {
+    color: var(--font-color);
+}
+
+.navbar-light .navbar-brand,
+.nav-link svg {
+    fill: var(--font-color);
+}
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.card {
+    background-color: var(--bg-color-contrast);
+    border-radius: var(--default-border-radius);
+}
+a[class*="Button"] {
+    background-color: var(--bg-color-contrast);
+    border-radius: var(--default-border-radius) !important;
+}
+a[class*="Button"]:hover, a[class*="Button"]:hover span{
+    background-color: var(--heading-color);
+    color: var(--bg-color-contrast) !important;
+}
+
+select[class*="sortOptions"] {
+    background-color: var(--bg-color-contrast);
+    color: var(--font-color);
+    border-radius: var(--default-border-radius);
+}
+
+input{
+    border-radius: var(--default-border-radius) ;
+}
+
+/* input, .card,  */
+/* a {
+    color: var(--primary-color);
+} */

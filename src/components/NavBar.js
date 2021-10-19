@@ -3,7 +3,7 @@ import { Navbar as BootstrapNavbar, Container } from 'react-bootstrap';
 
 function Navbar({ children }) {
     return (
-        <BootstrapNavbar bg="light" expand="lg" className="mb-3" sticky="top">
+        <BootstrapNavbar expand="lg" className="mb-3" sticky="top">
             <Container>
                 <BootstrapNavbar.Brand>Kontrata</BootstrapNavbar.Brand>
                 <BootstrapNavbar.Toggle />
