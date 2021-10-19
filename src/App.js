@@ -7,10 +7,10 @@ import { EXTERNAL_LINKS } from "./constants";
 
 function App() {
 
-  const [show, setShow] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setModalContent(null);
+  const handleShow = (content) => setModalContent(content);
 
   const numberFormat = (value) =>
     new Intl.NumberFormat('es-ES', {
@@ -101,29 +101,30 @@ function App() {
                     dataField: "resolution_0.priceWithVAT",
                     sortBy: "asc"
                   }
-
-                ]}
-                renderItem={(res) =>
-                  <>
-                    <Card>
-                      <Card.Body>
-                        <Card.Title>{res.title}</Card.Title>
-                        <Card.Text>
-                          ID: {res.id}<br />
-                          Authority: {res.authority}<br />
-                          Status: {res.status}<br />
-                          Winner: {res.winner_0?.name}<br />
-                          Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
-                          Offerers: {res.offerers.map((item) => item.name + ', ')} <br />
-                          <Button variant="primary" onClick={handleShow}>See more details</Button>
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                    <Modal show={show} onHide={handleClose} fullscreen={true}>
+              ]}
+              renderItem={(res) =>
+                <>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title>{res.title}</Card.Title>
+                      <Card.Text>
+                        ID: {res.id}<br />
+                        Authority: {res.authority}<br />
+                        Status: {res.status}<br />
+                        Winner: {res.winner_0?.name}<br />
+                        Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
+                        Offerers: {res.offerers.map((item) => item.name + ', ')} <br />
+                        <Button variant="primary" onClick={() => handleShow(res)}>See more details</Button>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                 <Modal show={!!modalContent} onHide={handleClose} fullscreen={true}>
+                 {modalContent && 
+                    <>
                       <Modal.Header closeButton>
-                        <Modal.Title>{res.title}</Modal.Title>
+                        <Modal.Title>{modalContent.title}</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body><pre>{JSON.stringify(res, null, 2)}</pre></Modal.Body>
+                      <Modal.Body><pre>{JSON.stringify(modalContent, null, 2)}</pre></Modal.Body>
                       <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                           Close
@@ -132,14 +133,16 @@ function App() {
                           Save Changes
                         </Button>
                       </Modal.Footer>
-                    </Modal>
-                  </>
-                }
-                renderResultStats={
-                  function (stats) {
-                    return (
-                      `Showing ${stats.displayedResults} of total ${stats.numberOfResults} in ${stats.time} ms`
-                    )
+                    </>
+                    }
+                  </Modal>
+                </>
+              }
+              renderResultStats={
+                  function(stats){
+                      return (
+                          `Showing ${stats.displayedResults} of total ${stats.numberOfResults} in ${stats.time} ms`
+                      )
                   }
                 }
               />
