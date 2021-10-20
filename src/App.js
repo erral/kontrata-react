@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Icon, LanguageSelector, Footer } from './components';
+import { Navbar, Icon, LanguageSelector, Footer, DarkModeToggle } from './components';
 import { EXTERNAL_LINKS } from "./constants";
+import './style.css';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Navbar>
         <LanguageSelector />
         <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank"><Icon name="github" size="28px" /></Nav.Link>
+        <DarkModeToggle />
       </Navbar>
       <ReactiveBase
         url="http://localhost:9200"
@@ -104,7 +106,7 @@ function App() {
               ]}
               renderItem={(res) =>
                 <>
-                  <Card>
+                  <Card className="mb-2">
                     <Card.Body>
                       <Card.Title>{res.title}</Card.Title>
                       <Card.Text>
