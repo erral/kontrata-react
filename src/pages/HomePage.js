@@ -1,5 +1,5 @@
 import React from "react"
-import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
+import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, ToggleButton, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Card, Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Footer } from '../components';
@@ -30,7 +30,7 @@ function HomePage({ children }) {
                         <Col md={4}>
                             <SingleList
                                 componentId="Authority"
-                                dataField="authority.keyword"
+                                dataField="authority.name.keyword"
                                 title="Authority"
                                 sortBy="asc"
                                 size={10000}
@@ -38,33 +38,56 @@ function HomePage({ children }) {
 
                             <SingleList
                                 componentId="Status"
-                                dataField="status.keyword"
+                                dataField="status.name.keyword"
                                 title="Status"
                                 sortBy="asc"
                             />
 
                             <SingleList
                                 componentId="Type"
-                                dataField="contract_type.keyword"
+                                dataField="contract_type.name.keyword"
                                 title="Contract type"
                                 sortBy="asc"
                             />
 
-                            <RangeSlider
-                                componentId="PriceSensor"
-                                dataField="resolution_0.priceWithVAT"
-                                title="Price"
-                                range={{
-                                    start: 0,
-                                    end: 1000000
-                                }}
-                                rangeLabels={{
-                                    start: '0',
-                                    end: '1000000'
-                                }}
-                                showHistogram={true}
-                                snap={false}
+                            <ToggleButton
+                                componentId="MinorContact"
+                  dataField="minor_contract"
+                  title="Minor contact"
+                                data={[
+                                    { label: 'Yes', value: true },
+                                    { label: 'No', value: false },
+                                    { label: 'Unknown', value: null },
+                                ]}
                             />
+
+
+
+                                            <MultiRange
+                                componentId="PriceSensor"
+                  dataField="resolution_0.priceWithVAT"
+                  title="Price"
+                                data={[
+                                    { start: 0, end: 10000.0, label: '<10000' },
+                                    { start: 10001, end: 50000, label: '10001 < x < 50000' },
+                                    { start: 50001, end: 200000, label: '50001 < x < 200000' },
+                                    { start: 200001, end: 999999999999, label: '200001 < x' },
+                                ]}
+                                title="Prices"
+                            />
+
+                            <MultiRange
+                                componentId="BudgetSensor"
+                                dataField="budget"
+                                data={[
+                                    { start: 0, end: 10000.0, label: '<10000' },
+                                    { start: 10001, end: 50000, label: '10001 < x < 50000' },
+                                    { start: 50001, end: 200000, label: '50001 < x < 200000' },
+                                    { start: 200001, end: 999999999999, label: '200001 < x' },
+                                ]}
+                                title="Budget"
+                            />
+
 
                         </Col>
                         <Col md={8}>
@@ -78,15 +101,19 @@ function HomePage({ children }) {
 
                             <ReactiveList
                                 componentId="SearchResult"
+                                dataField=""
                                 pagination={true}
-                                paginationAt="both"
-                                react={{
-                                    "and": [
-                                        "Authority",
-                                        "Status",
-                                        "Type",
-                                        "SearchSensor", "PriceSensor"]
-                                }}
+                  paginationAt="both"
+    react={{
+      and: [
+"Authority",
+"Status",
+"Type",
+"PriceSensor",
+"BudgetSensor",
+        "SearchSensor",
+      "MinorContract"]
+    }}
                                 sortOptions={[
                                     {
                                         label: "Price (high to low)",
@@ -106,11 +133,13 @@ function HomePage({ children }) {
                                                 <Card.Title>{res.title}</Card.Title>
                                                 <Card.Text>
                                                     ID: {res.id}<br />
-                                                    Authority: {res.authority}<br />
-                                                    Status: {res.status}<br />
+                                          Authority: {res.authority?.name} ({res.authority?.cif})<br />
+                                          Budget: {numberFormat(res.budget)}<br />
+                                          Status: {res.status?.code} ({res.status?.name})<br />
+                                          Minor Contract: {res.minor_contract}<br />
                                                     Winner: {res.winner_0?.name}<br />
                                                     Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
-                                                    Offerers: {res.offerers.map((item) => item.name + ', ')} <br />
+                                                    Offerers: {res.offerers.map(item => item.name + ', ')} <br />
                                                     <Button variant="primary" onClick={() => handleShow(res)}>See more details</Button>
                                                 </Card.Text>
                                             </Card.Body>
