@@ -22,7 +22,7 @@ function HomePage({ children }) {
     return (
         <>
             <ReactiveBase
-                url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}`}
+                url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}/`}
                 app="contracts_es"
             >
                 <Container>
