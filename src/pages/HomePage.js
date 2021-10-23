@@ -23,8 +23,6 @@ function HomePage({ children }) {
         <>
             <ReactiveBase
                 url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}`}
-
-                url="http://localhost:9200/"
                 app="contracts_es"
             >
                 <Container>
