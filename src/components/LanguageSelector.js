@@ -17,7 +17,7 @@ function LanguageSelector({ icon, language, setLanguage, route }) {
         <NavDropdown title={<>{icon && <Icon name={icon} />} {language}</>} id="basic-nav-dropdown">
             {Object.entries(LANGUAGES).map(([key, value]) => {
                 return (
-                    <NavDropdown.Item onClick={() => redirect(route.sibling?route.sibling:`/${key}`)}>{value.toString()}</NavDropdown.Item>
+                  <NavDropdown.Item key={key} onClick={() => redirect(route.sibling?route.sibling:`/${key}`)}>{value.toString()}</NavDropdown.Item>
                 );
             })}
         </NavDropdown>

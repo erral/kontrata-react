@@ -28,9 +28,9 @@ function App() {
             <Redirect to={"/" + language} />
           </Route>
           <Switch>
-            {routes.map(route => {
+            {routes.map((route, key) => {
               return (
-                <Route path={route.path}>
+                <Route key={key} path={route.path}>
                   <Navbar>
                     <FormattedMessage id="app.testing_text"
                       defaultMessage="Edit <code>src/App.js</code> and save to reload.<br/>Now with {what}!"
