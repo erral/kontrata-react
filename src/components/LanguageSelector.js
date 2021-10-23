@@ -1,17 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { NavDropdown } from 'react-bootstrap';
 import Icon from './Icon';
-import { DB_KEYS, LANGUAGES } from '../constants';
-import useLocalStorage from "../utils/useLocalStorage";
+import { LANGUAGES } from '../constants';
+import { useHistory } from "react-router";
 
-function LanguageSelector({ icon }) {
-    const [language, setLanguage] = useLocalStorage(DB_KEYS.SELECTED_LANGUAGE, Object.keys(LANGUAGES)[0]);
-
+function LanguageSelector({ icon, language, setLanguage, route }) {
+    const {path} = route;
+    useEffect(() => {
+        setLanguage(path.match(/^\/([a-zA-Z]+).*$/)[1])
+    }, [path, setLanguage]);
+    let history = useHistory();
+    const redirect = (path) => {
+      history.push(path)
+    }
     return (
         <NavDropdown title={<>{icon && <Icon name={icon} />} {language}</>} id="basic-nav-dropdown">
             {Object.entries(LANGUAGES).map(([key, value]) => {
                 return (
-                    <NavDropdown.Item onClick={() => { setLanguage(key) }}>{value.toString()}</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => redirect(route.sibling?route.sibling:`/${key}`)}>{value.toString()}</NavDropdown.Item>
                 );
             })}
         </NavDropdown>
