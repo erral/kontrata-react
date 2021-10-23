@@ -1,11 +1,12 @@
 import React from "react"
 import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
-import { Row, Col, Container, Card, Button, Modal, Nav } from 'react-bootstrap';
+import { Row, Col, Container, Card, Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Icon, LanguageSelector, Footer, DarkModeToggle } from '../components';
-import { EXTERNAL_LINKS } from "../constants";
+import { Footer } from '../components';
 import '../style.css';
-import { FormattedMessage } from 'react-intl';
+import { REACT_APP_ELASTIC_SCHEME,
+    REACT_APP_ELASTIC_HOST,
+    REACT_APP_ELASTIC_PORT } from '../constants.js';
 
 function HomePage({ children }) {
     const [modalContent, setModalContent] = React.useState(null);
@@ -21,6 +22,8 @@ function HomePage({ children }) {
     return (
         <>
             <ReactiveBase
+                url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}`}
+
                 url="http://localhost:9200/"
                 app="contracts_es"
             >
