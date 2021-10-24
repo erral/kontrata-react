@@ -34,12 +34,6 @@ function App() {
               return (
                 <Route key={key} path={route.path}>
                   <Navbar>
-                    <FormattedMessage
-                      id="app.testing_text"
-                      defaultMessage="Edit <code>src/App.js</code> and save to reload.<br/>Now with {what}!"
-                      description="Welcome header on app main page"
-                      values={{ what: "react-intl" }}
-                    />
                     <LanguageSelector
                       route={route}
                       language={language}
