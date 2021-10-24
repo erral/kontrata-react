@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
+import { Link } from "react-router-dom";
 
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
@@ -17,8 +18,15 @@ function ResultCard({ result_item, card_classname, on_click }) {
         <Card.Text>
           ID: {result_item.id}
           <br />
-          Authority: {result_item.authority?.name} ({result_item.authority?.cif}
-          )<br />
+          Authority:{" "}
+          {result_item.authority?.cif ? (
+            <Link to={{ pathname: "/es/empresa/" + result_item.authority.cif }}>
+              {result_item.authority.name}
+            </Link>
+          ) : (
+            result_item.authority.name
+          )}
+          <br />
           Budget: {numberFormat(result_item.budget)}
           <br />
           Status: {result_item.status?.code} ({result_item.status?.name})<br />
@@ -29,11 +37,22 @@ function ResultCard({ result_item, card_classname, on_click }) {
             <Icon name="notok" size="28px" />
           )}
           <br />
-          Winner: {result_item.winner_0?.name}
+          Winner: {result_item.winner_0?.cif ? (
+            <Link to={"/es/empresa/" + result_item.winner_0.cif}>
+              {result_item.winner_0.name}
+            </Link>
+          ) : (
+            result_item.winner_0.name
+          )}
           <br />
           Price: {numberFormat(result_item.resolution_0?.priceWithVAT)}
           <br />
-          Offerers: {result_item.offerers.map((item) => item.name + ", ")}{" "}
+          {result_item.offerers.length > 1 && <ul> {result_item.offerers
+            .sort((a, b) => a.name > b.name ? 1 : -1)
+            .map((offerer) => <li>
+              {offerer.cif ? (<Link to={{ pathname: "/es/empresa/" + offerer.cif }}>{offerer.name}</Link>) : (offerer.name)}
+
+            </li>)}</ul>}
           <br />
           {on_click !== undefined && (
             <Button variant="primary" onClick={() => on_click(result_item)}>
