@@ -4,6 +4,7 @@ import {
   DataSearch,
   SingleList,
   ReactiveList,
+  SingleDataList,
   RangeSlider,
   ToggleButton,
   MultiRange,
