@@ -37,22 +37,35 @@ function ResultCard({ result_item, card_classname, on_click }) {
             <Icon name="notok" size="28px" />
           )}
           <br />
-          Winner: {result_item.winner_0?.cif ? (
+          Winner:{" "}
+          {result_item.winner_0?.cif ? (
             <Link to={"/es/empresa/" + result_item.winner_0.cif}>
-              {result_item.winner_0.name}
+              {result_item.winner_0?.name}
             </Link>
           ) : (
-            result_item.winner_0.name
+            result_item.winner_0?.name
           )}
           <br />
           Price: {numberFormat(result_item.resolution_0?.priceWithVAT)}
           <br />
-          {result_item.offerers.length > 1 && <ul> {result_item.offerers
-            .sort((a, b) => a.name > b.name ? 1 : -1)
-            .map((offerer) => <li>
-              {offerer.cif ? (<Link to={{ pathname: "/es/empresa/" + offerer.cif }}>{offerer.name}</Link>) : (offerer.name)}
-
-            </li>)}</ul>}
+          {result_item.offerers.length > 1 && (
+            <ul>
+              {" "}
+              {result_item.offerers
+                .sort((a, b) => (a.name > b.name ? 1 : -1))
+                .map((offerer) => (
+                  <li>
+                    {offerer.cif ? (
+                      <Link to={{ pathname: "/es/empresa/" + offerer.cif }}>
+                        {offerer.name}
+                      </Link>
+                    ) : (
+                      offerer.name
+                    )}
+                  </li>
+                ))}
+            </ul>
+          )}
           <br />
           {on_click !== undefined && (
             <Button variant="primary" onClick={() => on_click(result_item)}>
