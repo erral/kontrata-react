@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import Icon from "./Icon";
 
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
@@ -21,7 +22,12 @@ function ResultCard({ result_item, card_classname, on_click }) {
           Budget: {numberFormat(result_item.budget)}
           <br />
           Status: {result_item.status?.code} ({result_item.status?.name})<br />
-          Minor Contract: {result_item.minor_contract}
+          Minor Contract:
+          {result_item.minor_contract ? (
+            <Icon name="ok" size="28px" />
+          ) : (
+            <Icon name="notok" size="28px" />
+          )}
           <br />
           Winner: {result_item.winner_0?.name}
           <br />
