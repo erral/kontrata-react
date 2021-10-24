@@ -5,7 +5,7 @@ way to search for contracts published at the [Basque Public Administration Publi
 Platform (REVASCON)](https://www.contratacion.euskadi.eus/w32-kpereva/es/y46aRevasconWar/consultaContratosC/filtro?locale=es).
 
 This project has been inspired by [@JaimeObregon](https://twitter.com/JaimeObregon) and [contratoscantabria.es](https://contratosdecantabria.es/)
-![screenshot](./docs/screenshot.png)
+![screenshot](./docs/kontrata.gif)
 
 ## Dependencies
 
