@@ -1,6 +1,7 @@
 import { LANGUAGES } from "./constants";
 import HomePage from "./pages/HomePage";
 import CompanyPage from "./pages/CompanyPage";
+import AuthorityPage from "./pages/AuthorityPage";
 import { Redirect } from 'react-router-dom';
 
 const language_independent_routes = Object.keys(LANGUAGES).map(lang => {
@@ -41,6 +42,28 @@ const language_dependant_routes = [
     path:`/eu/enpresa`,
     sibling:`/es/empresa`,
   },
+
+  {
+    component: () => <AuthorityPage />,
+    path:`/es/administracion/:cif`,
+    sibling:`/eu/administrazioa/:cif`,
+  },
+  {
+    component: () => <AuthorityPage />,
+    path:`/eu/administrazioa/:cif`,
+    sibling:`/es/administracion/:cif`,
+  },
+  {
+    component: () => <Redirect to="/" />,
+    path:`/es/administracion`,
+    sibling:`/eu/administrazioa`,
+  },
+  {
+    component: () => <Redirect to="/" />,
+    path:`/eu/administrazioa`,
+    sibling:`/es/administracion`,
+  },
+
 
 ]
 console.log('language_independent_routes: ', ...language_independent_routes);
