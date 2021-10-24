@@ -1,15 +1,21 @@
 import React from "react"
-import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, ToggleButton, MultiRange, SelectedFilters } from "@appbaseio/reactivesearch";
+import { ReactiveBase, DataSearch, SingleList, ReactiveList, RangeSlider, ToggleButton, MultiRange, SelectedFilters, SingleDataList } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Card, Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Footer } from '../components';
 import '../style.css';
 import { REACT_APP_ELASTIC_SCHEME,
     REACT_APP_ELASTIC_HOST,
     REACT_APP_ELASTIC_PORT } from '../constants.js';
+import useLocalStorage from '../utils/useLocalStorage';
+import { DB_KEYS } from '../constants';
+import { Icon } from '../components';
 
 function HomePage({ children }) {
-    const [modalContent, setModalContent] = React.useState(null);
+  const default_language = navigator.language.split(/[-_]/)[0];  // language without region code
+  const [language, setLanguage] = useLocalStorage(DB_KEYS.SELECTED_LANGUAGE, default_language);
+  const [modalContent, setModalContent] = React.useState(null);
 
     const handleClose = () => setModalContent(null);
     const handleShow = (content) => setModalContent(content);
@@ -33,52 +39,58 @@ function HomePage({ children }) {
                                 dataField="authority.name.keyword"
                                 title="Authority"
                                 sortBy="asc"
-                                size={10000}
+                  size={10000}
+                  URLParams={true}
                             />
 
                             <SingleList
                                 componentId="Status"
                                 dataField="status.name.keyword"
                                 title="Status"
-                                sortBy="asc"
+                  sortBy="asc"
+                  URLParams={true}
                             />
 
                             <SingleList
                                 componentId="Type"
                                 dataField="contract_type.name.keyword"
                                 title="Contract type"
-                                sortBy="asc"
-                            />
+                  sortBy="asc"
+                  URLParams={true}
+                                />
 
-                            <ToggleButton
-                                componentId="MinorContact"
+                            <SingleDataList
+                  componentId="MinorContact"
                   dataField="minor_contract"
                   title="Minor contact"
-                                data={[
-                                    { label: 'Yes', value: true },
-                                    { label: 'No', value: false },
-                                    { label: 'Unknown', value: null },
-                                ]}
+                  showSearch={false}
+                  showRadio={true}
+                  showCount={true}
+                  URLParams={true}
+                  data={[
+                    { label: 'Yes', value: "true" },
+                    { label: 'No', value: "false" },
+                  ]}
                             />
 
-
-
-                                            <MultiRange
+                            <MultiRange
                                 componentId="PriceSensor"
-                  dataField="resolution_0.priceWithVAT"
+                                dataField="resolution_0.priceWithVAT"
                   title="Price"
+                  URLParams={true}
                                 data={[
                                     { start: 0, end: 10000.0, label: '<10000' },
                                     { start: 10001, end: 50000, label: '10001 < x < 50000' },
                                     { start: 50001, end: 200000, label: '50001 < x < 200000' },
                                     { start: 200001, end: 999999999999, label: '200001 < x' },
                                 ]}
-                                title="Prices"
+
                             />
 
                             <MultiRange
                                 componentId="BudgetSensor"
-                                dataField="budget"
+                  dataField="budget"
+                  URLParams={true}
                                 data={[
                                     { start: 0, end: 10000.0, label: '<10000' },
                                     { start: 10001, end: 50000, label: '10001 < x < 50000' },
@@ -94,7 +106,8 @@ function HomePage({ children }) {
                             <DataSearch
                                 componentId="SearchSensor"
                                 dataField={["title", "offerers.name", "winner_0.name"]}
-                                autosuggest={false}
+                  autosuggest={false}
+                  URLParams={true}
                             />
 
                             <SelectedFilters />
@@ -103,17 +116,18 @@ function HomePage({ children }) {
                                 componentId="SearchResult"
                                 dataField=""
                                 pagination={true}
-                  paginationAt="both"
-    react={{
-      and: [
-"Authority",
-"Status",
-"Type",
-"PriceSensor",
-"BudgetSensor",
-        "SearchSensor",
-      "MinorContract"]
-    }}
+                                paginationAt="both"
+                                react={{
+                                  and: [
+                                    "Authority",
+                                    "Status",
+                                    "Type",
+                                    "PriceSensor",
+                                    "BudgetSensor",
+                                    "SearchSensor",
+                                    "MinorContract"
+                                ]
+                                }}
                                 sortOptions={[
                                     {
                                         label: "Price (high to low)",
@@ -136,10 +150,21 @@ function HomePage({ children }) {
                                           Authority: {res.authority?.name} ({res.authority?.cif})<br />
                                           Budget: {numberFormat(res.budget)}<br />
                                           Status: {res.status?.code} ({res.status?.name})<br />
-                                          Minor Contract: {res.minor_contract}<br />
-                                                    Winner: {res.winner_0?.name}<br />
-                                                    Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
-                                                    Offerers: {res.offerers.map(item => item.name + ', ')} <br />
+                                          Minor Contract: {res.minor_contract ? <Icon name="ok" size="28px" /> : <Icon name="notok" size="28px" />}<br />
+                                          Winner: <Link to={{pathname: `/${language}/empresa/${res.winner_0?.cif}`,state: { fromDashboard: true }}}>{res.winner_0?.name} </Link><br />
+                                          Price: {numberFormat(res.resolution_0?.priceWithVAT)}<br />
+                                          {res.offerers?.length > 1 &&
+                                          <>
+                                            Offerers:<br />
+                                            <ul>
+                                              {res.offerers
+                                                .sort((a, b) => a.name.localeCompare(b.name))
+                                                .map(item => <li><Link to={{ pathname: `/${language}/empresa/${item?.cif}`, state: { fromDashboard: true } }}>{item.name} </Link> </li>)}
+                                            </ul>
+                                          </>
+                                          }
+
+
                                                     <Button variant="primary" onClick={() => handleShow(res)}>See more details</Button>
                                                 </Card.Text>
                                             </Card.Body>
