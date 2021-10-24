@@ -1,12 +1,11 @@
 # kontrata-react
 
-This project is the frontend search engine to [kontrata](https://github.com/erral/kontrata) a tool to provide an easy 
+This project is the frontend search engine to [kontrata](https://github.com/erral/kontrata) a tool to provide an easy
 way to search for contracts published at the [Basque Public Administration Public Contracts
 Platform (REVASCON)](https://www.contratacion.euskadi.eus/w32-kpereva/es/y46aRevasconWar/consultaContratosC/filtro?locale=es).
 
 This project has been inspired by [@JaimeObregon](https://twitter.com/JaimeObregon) and [contratoscantabria.es](https://contratosdecantabria.es/)
 ![screenshot](./docs/screenshot.png)
-
 
 ## Dependencies
 
@@ -19,6 +18,18 @@ at [kontrata-docker](https://github.com/erral/kontrata-docker) a docker-compose 
 
 While I figure how to configure [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), you may need to use a browser
 extension to by-pass CORS. I use [CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino) for Chrome.
+
+By default this app will try to connect to a elastic running in localhost:9200. If you want to change this, you can do it setting an environment var:
+
+```shell
+export REACT_APP_ELASTIC_HOST=10.0.0.5 && yarn start
+```
+
+You also have the following environment vars to customize this behavior:
+
+- REACT_APP_ELASTIC_HOST
+- REACT_APP_ELASTIC_PORT
+- REACT_APP_ELASTIC_SCHEME
 
 ## Work In Progress
 
@@ -99,7 +110,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
 
 ## License
 
