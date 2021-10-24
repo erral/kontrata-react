@@ -147,7 +147,7 @@ function HomePage({ children }) {
                                                 <Card.Title>{res.title}</Card.Title>
                                                 <Card.Text>
                                                     ID: {res.id}<br />
-                                          Authority: {res.authority?.name} ({res.authority?.cif})<br />
+                                          Authority: {res.authority?.cif ? <Link to={{ pathname: `/${language}/administracion/${res.authority?.cif}`, state: { fromDashboard: true } }}>{res.authority?.name} </Link> : res.authority.name }<br />
                                           Budget: {numberFormat(res.budget)}<br />
                                           Status: {res.status?.code} ({res.status?.name})<br />
                                           Minor Contract: {res.minor_contract ? <Icon name="ok" size="28px" /> : <Icon name="notok" size="28px" />}<br />
