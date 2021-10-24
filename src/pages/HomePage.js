@@ -5,8 +5,6 @@ import {
   SingleList,
   ReactiveList,
   SingleDataList,
-  RangeSlider,
-  ToggleButton,
   MultiRange,
   SelectedFilters,
 } from "@appbaseio/reactivesearch";
@@ -19,16 +17,8 @@ import {
   REACT_APP_ELASTIC_HOST,
   REACT_APP_ELASTIC_PORT,
 } from "../constants.js";
-import useLocalStorage from "../utils/useLocalStorage";
-import { DB_KEYS } from "../constants";
-import { Icon } from "../components";
 
 function HomePage({ children }) {
-  const default_language = navigator.language.split(/[-_]/)[0]; // language without region code
-  const [language, setLanguage] = useLocalStorage(
-    DB_KEYS.SELECTED_LANGUAGE,
-    default_language
-  );
   const [modalContent, setModalContent] = React.useState(null);
 
   const handleClose = () => setModalContent(null);

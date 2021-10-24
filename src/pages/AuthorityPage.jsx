@@ -5,7 +5,7 @@ import {
   DataSearch,
   ReactiveList,
 } from "@appbaseio/reactivesearch";
-import { Row, Col, Container, Card, Button, Modal } from "react-bootstrap";
+import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Footer, ResultCard } from "../components";
 import "../style.css";
@@ -20,13 +20,7 @@ function AuthorityPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
   const handleClose = () => setModalContent(null);
   const handleShow = (content) => setModalContent(content);
-  const numberFormat = (value) =>
-    new Intl.NumberFormat("es-ES", {
-      style: "currency",
-      currency: "EUR",
-    }).format(value);
   let { cif } = useParams();
-  console.log(cif);
   if (cif === "") {
     <Redirect to="/" />;
   }
