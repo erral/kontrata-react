@@ -48,6 +48,14 @@ function HomePage({ children }) {
                 sortBy="asc"
                 size={10000}
                 URLParams={true}
+                react={{ and: [
+                  "Status",
+                  "Type",
+                  "MinorContract",
+                  "PriceSensor",
+                  "BudgetSensor",
+                  "SearchSensor",
+                ] }}
               />
 
               <SingleList
@@ -59,6 +67,15 @@ function HomePage({ children }) {
                 })}
                 sortBy="asc"
                 URLParams={true}
+                react={{ and: [
+                  "Authority",
+                  "Type",
+                  "MinorContract",
+                  "PriceSensor",
+                  "BudgetSensor",
+                  "SearchSensor",
+                ] }}
+
               />
 
               <SingleList
@@ -70,6 +87,15 @@ function HomePage({ children }) {
                 })}
                 sortBy="asc"
                 URLParams={true}
+                react={{ and: [
+                  "Authority",
+                  "Status",
+                  "MinorContract",
+                  "PriceSensor",
+                  "BudgetSensor",
+                  "SearchSensor",
+                ] }}
+
               />
 
               <SingleDataList
@@ -87,6 +113,15 @@ function HomePage({ children }) {
                   { label: "Yes", value: "true" },
                   { label: "No", value: "false" },
                 ]}
+                react={{ and: [
+                  "Authority",
+                  "Status",
+                  "Type",
+                  "PriceSensor",
+                  "BudgetSensor",
+                  "SearchSensor",
+                ] }}
+
               />
 
               <MultiRange
@@ -103,6 +138,15 @@ function HomePage({ children }) {
                   { start: 50001, end: 200000, label: "50001 < x < 200000" },
                   { start: 200001, end: 999999999999, label: "200001 < x" },
                 ]}
+                react={{ and: [
+                  "Authority",
+                  "Status",
+                  "Type",
+                  "MinorContract",
+                  "BudgetSensor",
+                  "SearchSensor",
+                ] }}
+
               />
 
               <MultiRange
@@ -119,6 +163,15 @@ function HomePage({ children }) {
                   id: "Budget",
                   defaultMessage: "Budget",
                 })}
+                react={{ and: [
+                  "Authority",
+                  "Status",
+                  "Type",
+                  "MinorContract",
+                  "PriceSensor",
+                  "SearchSensor",
+                ] }}
+
               />
             </Col>
             <Col md={8}>
@@ -127,6 +180,8 @@ function HomePage({ children }) {
                 dataField={["title", "offerers.name", "winner_0.name"]}
                 autosuggest={false}
                 URLParams={true}
+
+
               />
 
               <SelectedFilters />
