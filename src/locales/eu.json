@@ -1,8 +1,18 @@
 {
-  "authority": "Administrazioa",
-  "budget": "Aurrekontua",
-  "offers": "Eskaintzak",
-  "price": "Prezioa",
-  "see-more-details": "Ikusi xehetasun gehiago",
-  "winner": "Irabazlea"
+  "Authority": "Administrazioa",
+  "Authority:": "Administrazioa:",
+  "Budget": "Aurrekontua",
+  "Budget:": "Aurrekontua:",
+  "Close": "Itxi",
+  "Contract type": "Kontratu mota",
+  "ID:": "ID:",
+  "Minor contract": "",
+  "Minor contract:": "",
+  "Price": "Prezioa",
+  "Price:": "Prezioa:",
+  "Save changes": "Gorde aldaketak",
+  "See more details": "Ikusi xehetasun gehiago",
+  "Status": "Egoera",
+  "Status:": "Egoera",
+  "Winner:": "Irabazlea"
 }
