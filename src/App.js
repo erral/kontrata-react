@@ -2,13 +2,12 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import { IntlProvider } from "react-intl";
-import messages_eu from "./translations/eu.json";
-import messages_es from "./translations/es.json";
+import messages_eu from "./locales/eu.json";
+import messages_es from "./locales/es.json";
 import routes from "./routes";
 import useLocalStorage from "./utils/useLocalStorage";
 import { DB_KEYS, EXTERNAL_LINKS } from "./constants";
 import { Navbar, Icon, LanguageSelector, DarkModeToggle } from "./components";
-import { FormattedMessage } from "react-intl";
 import { Nav } from "react-bootstrap";
 
 const messages = {
