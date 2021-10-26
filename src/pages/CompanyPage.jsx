@@ -15,6 +15,7 @@ import {
   REACT_APP_ELASTIC_PORT,
 } from "../constants.js";
 import { useParams } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 function CompanyPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
@@ -99,11 +100,17 @@ function CompanyPage({ children }) {
 
                           <Modal.Footer>
                             <Button variant="secondary" onClick={handleClose}>
-                              Close
+                              <FormattedMessage
+                                id="Close"
+                                defaultMessage="Close"
+                              />
                             </Button>
 
                             <Button variant="primary" onClick={handleClose}>
-                              Save Changes
+                              <FormattedMessage
+                                id="Save changes"
+                                defaultMessage="Save changes"
+                              />
                             </Button>
                           </Modal.Footer>
                         </>

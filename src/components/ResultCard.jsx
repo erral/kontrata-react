@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
@@ -16,9 +17,9 @@ function ResultCard({ result_item, card_classname, on_click }) {
       <Card.Body>
         <Card.Title>{result_item.title}</Card.Title>
         <Card.Text>
-          ID: {result_item.id}
+          <FormattedMessage id="ID:" defaultMessage="ID:" /> {result_item.id}
           <br />
-          Authority:{" "}
+          <FormattedMessage id="Authority:" defaultMessage="Authority:" />{" "}
           {result_item.authority?.cif ? (
             <Link to={{ pathname: "/es/empresa/" + result_item.authority.cif }}>
               {result_item.authority.name}
@@ -27,17 +28,22 @@ function ResultCard({ result_item, card_classname, on_click }) {
             result_item.authority.name
           )}
           <br />
-          Budget: {numberFormat(result_item.budget)}
+          <FormattedMessage id="Budget:" defaultMessage="Budget:" />{" "}
+          {numberFormat(result_item.budget)}
           <br />
-          Status: {result_item.status?.code} ({result_item.status?.name})<br />
-          Minor Contract:
+          <FormattedMessage id="Status:" defaultMessage="Status:" />{" "}
+          {result_item.status?.code} ({result_item.status?.name})<br />
+          <FormattedMessage
+            id="Minor contract:"
+            defaultMessage="Minor contract:"
+          />
           {result_item.minor_contract ? (
             <Icon name="ok" size="28px" />
           ) : (
             <Icon name="notok" size="28px" />
           )}
           <br />
-          Winner:{" "}
+          <FormattedMessage id="Winner:" defaultMessage="Winner:" />{" "}
           {result_item.winner_0?.cif ? (
             <Link to={"/es/empresa/" + result_item.winner_0.cif}>
               {result_item.winner_0?.name}
@@ -46,7 +52,8 @@ function ResultCard({ result_item, card_classname, on_click }) {
             result_item.winner_0?.name
           )}
           <br />
-          Price: {numberFormat(result_item.resolution_0?.priceWithVAT)}
+          <FormattedMessage id="Price:" defaultMessage="Price:" />{" "}
+          {numberFormat(result_item.resolution_0?.priceWithVAT)}
           <br />
           {result_item.offerers.length > 1 && (
             <ul>
@@ -69,7 +76,10 @@ function ResultCard({ result_item, card_classname, on_click }) {
           <br />
           {on_click !== undefined && (
             <Button variant="primary" onClick={() => on_click(result_item)}>
-              See more details
+              <FormattedMessage
+                id="See more details"
+                defaultMessage="See more details"
+              />
             </Button>
           )}
         </Card.Text>
