@@ -58,7 +58,7 @@ You will also see any lint errors in the console.
 
 ### `yarn i18n`
 
-Extracts all translatable texts from code and writes the defaultMessage into en.json language.
+Extracts all translatable texts from code and writes the defaultMessage into en.json language, updating with empty string into the eu and es languages.
 
 ### `yarn test`
 
