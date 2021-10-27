@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
@@ -86,6 +87,12 @@ function ResultCard({ result_item, card_classname, on_click }) {
       </Card.Body>
     </Card>
   );
+}
+
+ResultCard.propTypes = {
+  result_item: PropTypes.object,
+  card_classname: PropTypes.string,
+  onclick: PropTypes.func
 }
 
 export default ResultCard;

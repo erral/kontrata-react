@@ -16,6 +16,7 @@ import {
 } from "../constants.js";
 import { useParams } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
 function CompanyPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
@@ -131,6 +132,10 @@ function CompanyPage({ children }) {
       </Footer>
     </>
   );
+}
+
+CompanyPage.propTypes = {
+  children: PropTypes.element
 }
 
 export default CompanyPage;

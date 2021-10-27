@@ -3,6 +3,7 @@ import { NavDropdown } from "react-bootstrap";
 import Icon from "./Icon";
 import { LANGUAGES } from "../constants";
 import { useHistory } from "react-router";
+import PropTypes from 'prop-types';
 
 function LanguageSelector({ icon, language, setLanguage, route }) {
   const { path } = route;
@@ -34,6 +35,13 @@ function LanguageSelector({ icon, language, setLanguage, route }) {
       })}
     </NavDropdown>
   );
+}
+
+LanguageSelector.propTypes = {
+  icon: PropTypes.string,
+  language: PropTypes.string,
+  setLanguage : PropTypes.func,
+  route: PropTypes.string
 }
 
 export default LanguageSelector;

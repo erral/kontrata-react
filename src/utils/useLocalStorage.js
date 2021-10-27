@@ -1,11 +1,6 @@
 import { useState } from "react";
-/**
- * Localstorage hook to create an interface when adding an item to the localstorage
- * Source: https://usehooks.com/useLocalStorage/
- * @param {string} key
- * @param {string} initialValue
- * @returns
- */
+import PropTypes from "prop-types";
+
 function useLocalStorage(key, initialValue) {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
@@ -15,6 +10,7 @@ function useLocalStorage(key, initialValue) {
       const item = window.localStorage.getItem(key);
       if (!item) {
         console.log("initialValue: ", initialValue);
+      
         // setStoredValue(initialValue);
         window.localStorage.setItem(key, JSON.stringify(initialValue));
       }
@@ -44,4 +40,10 @@ function useLocalStorage(key, initialValue) {
   };
   return [storedValue, setValue];
 }
+
+useLocalStorage.propTypes = {
+  key: PropTypes.any.isRequired,
+  initialValue: PropTypes.any.isRequired
+}
+
 export default useLocalStorage;
