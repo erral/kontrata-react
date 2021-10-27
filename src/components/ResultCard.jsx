@@ -21,7 +21,11 @@ function ResultCard({ result_item, card_classname, on_click }) {
           <br />
           <FormattedMessage id="Authority:" defaultMessage="Authority:" />{" "}
           {result_item.authority?.cif ? (
-            <Link to={{ pathname: "/es/empresa/" + result_item.authority.cif }}>
+            <Link
+              to={{
+                pathname: "/es/administracion/" + result_item.authority.cif,
+              }}
+            >
               {result_item.authority.name}
             </Link>
           ) : (
