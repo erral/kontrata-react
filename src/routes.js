@@ -14,20 +14,20 @@ Object.keys(LANGUAGES).map((lang) => {
 const language_dependant_routes = {
   company: {
     component: () => <CompanyPage />,
-    eu: `/eu/enpresa/:cif`,
-    es: `/es/empresa/:cif`,
+    eu: `/eu/enpresa/:param`,
+    es: `/es/empresa/:param`,
   },
   authority: {
     component: () => <AuthorityPage />,
-    eu: `/eu/admninistrazioa/:cif`,
-    es: `/es/administracion/:cif`,
+    eu: `/eu/admninistrazioa/:param`,
+    es: `/es/administracion/:param`,
   },
-  companyr: {
+  base_company: {
     component: () => <Redirect to="/" />,
     eu: `/eu/enpresa`,
     es: `/es/empresa`,
   },
-  authorityr: {
+  base_authority: {
     component: () => <Redirect to="/" />,
     eu: `/eu/admninistrazioa`,
     es: `/es/administracion`,

@@ -12,9 +12,8 @@ function CompanyPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
   const handleClose = () => setModalContent(null);
   const handleShow = (content) => setModalContent(content);
-  let { cif } = useParams();
-  console.log(cif);
-  if (cif === "") {
+  let { param } = useParams();
+  if (param === "") {
     <Redirect to="/" />;
   }
 
@@ -23,7 +22,7 @@ function CompanyPage({ children }) {
       query: {
         match: {
           "winner_0.cif.keyword": {
-            query: cif,
+            query: param,
           },
         },
       },
