@@ -8,7 +8,7 @@ const language_independent_routes = {
   languageroot: { component: () => <HomePage /> },
 };
 Object.keys(LANGUAGES).map((lang) => {
-  language_independent_routes["languageroot"][lang] = `/${lang}`;
+  return (language_independent_routes["languageroot"][lang] = `/${lang}`);
 });
 
 const language_dependant_routes = {

@@ -14,7 +14,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
       style: "currency",
       currency: "EUR",
     }).format(value);
-  const [state, dispatch] = useContext(Context);
+  const [state] = useContext(Context);
   return (
     <Card className={card_class}>
       <Card.Body>

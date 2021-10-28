@@ -16,6 +16,7 @@ function LanguageSelector({ icon, route, lang }) {
       type: "SET_LANGUAGE",
       data: path.match(/^\/([a-zA-Z]+).*$/)[1],
     });
+    /* eslint-disable-next-line */
   }, []);
 
   let history = useHistory();
