@@ -1,11 +1,8 @@
 import React from "react";
 import {
-  ReactiveBase,
   DataSearch,
   SingleList,
   ReactiveList,
-  RangeSlider,
-  ToggleButton,
   MultiRange,
   SelectedFilters,
   SingleDataList,
@@ -14,13 +11,6 @@ import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Footer, ResultCard } from "../components";
 import "../style.css";
-import {
-  REACT_APP_ELASTIC_SCHEME,
-  REACT_APP_ELASTIC_HOST,
-  REACT_APP_ELASTIC_PORT,
-} from "../constants.js";
-import useLocalStorage from "../utils/useLocalStorage";
-import { DB_KEYS } from "../constants";
 import { useIntl } from "react-intl";
 
 function HomePage({ children }) {

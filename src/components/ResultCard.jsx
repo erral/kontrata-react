@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Store";
 import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
@@ -12,7 +13,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
       style: "currency",
       currency: "EUR",
     }).format(value);
-
+  const [state, dispatch] = useContext(Context);
   return (
     <Card className={card_class}>
       <Card.Body>
@@ -24,10 +25,10 @@ function ResultCard({ result_item, card_classname, on_click }) {
           {result_item.authority?.cif ? (
             <Link
               to={{
-                pathname: routes.company["es"].replace(
-                  ":cif",
-                  result_item.authority.cif
-                ),
+                pathname:
+                  routes.base_company[state.language] +
+                  "/" +
+                  result_item.authority?.cif,
               }}
             >
               {result_item.authority.name}
