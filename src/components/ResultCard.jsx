@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../Store";
 import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import routes from "../routes";
 import PropTypes from "prop-types";
 
 function ResultCard({ result_item, card_classname, on_click }) {
@@ -12,7 +14,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
       style: "currency",
       currency: "EUR",
     }).format(value);
-
+  const [state] = useContext(Context);
   return (
     <Card className={card_class}>
       <Card.Body>
@@ -24,7 +26,10 @@ function ResultCard({ result_item, card_classname, on_click }) {
           {result_item.authority?.cif ? (
             <Link
               to={{
-                pathname: "/es/administracion/" + result_item.authority.cif,
+                pathname:
+                  routes.base_company[state.language] +
+                  "/" +
+                  result_item.authority?.cif,
               }}
             >
               {result_item.authority.name}
@@ -96,7 +101,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
 ResultCard.propTypes = {
   result_item: PropTypes.object,
   card_classname: PropTypes.string,
-  onclick: PropTypes.func
-}
+  onclick: PropTypes.func,
+};
 
 export default ResultCard;
