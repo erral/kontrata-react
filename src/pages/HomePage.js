@@ -22,6 +22,7 @@ import {
 import useLocalStorage from "../utils/useLocalStorage";
 import { DB_KEYS } from "../constants";
 import { useIntl } from "react-intl";
+import PropTypes from "prop-types";
 
 function HomePage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
@@ -261,5 +262,10 @@ function HomePage({ children }) {
     </>
   );
 }
+
+HomePage.propTypes = {
+  children: PropTypes.element
+}
+
 
 export default HomePage;

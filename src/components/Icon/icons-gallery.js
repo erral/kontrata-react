@@ -4,6 +4,7 @@ import { ReactComponent as MoonSVG } from "./svgs/moon-outline.svg";
 import { ReactComponent as SunSVG } from "./svgs/sunny-outline.svg";
 import { ReactComponent as OkSVG } from "./svgs/ok_icon.svg";
 import { ReactComponent as NotOKSVG } from "./svgs/not_ok_icon.svg";
+import PropTypes from 'prop-types';
 
 export const IconsGallery = (name, size, color) => {
   const icon_design = { width: size, color: color };
@@ -17,3 +18,9 @@ export const IconsGallery = (name, size, color) => {
   };
   return icons[name];
 };
+
+IconsGallery.propTypes = {
+  name: PropTypes.string,
+  size: PropTypes.string,
+  color: PropTypes.string
+}
