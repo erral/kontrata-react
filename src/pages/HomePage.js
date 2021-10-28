@@ -254,8 +254,7 @@ function HomePage({ children }) {
 }
 
 HomePage.propTypes = {
-  children: PropTypes.element
-}
-
+  children: PropTypes.element,
+};
 
 export default HomePage;
