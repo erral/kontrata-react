@@ -18,6 +18,7 @@ import {
   REACT_APP_ELASTIC_HOST,
   REACT_APP_ELASTIC_PORT,
 } from "./constants.js";
+import Store from "./Store";
 
 const messages = {
   eu: messages_eu,
@@ -31,7 +32,7 @@ function App() {
     default_language
   );
   return (
-    <>
+    <Store>
       <BrowserRouter>
         <Route exact path="/">
           <Redirect to={"/" + language} />
@@ -44,11 +45,7 @@ function App() {
                 <Route key={routeKey + lang} path={route[lang]}>
                   <IntlProvider locale={lang} messages={messages?.[lang]}>
                     <Navbar>
-                      <LanguageSelector
-                        route={route}
-                        language={lang}
-                        setLanguage={setLanguage}
-                      />
+                      <LanguageSelector route={route} lang={lang} />
                       <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank">
                         <Icon name="github" size="28px" />
                       </Nav.Link>
@@ -67,7 +64,7 @@ function App() {
           })}
         </Switch>
       </BrowserRouter>
-    </>
+    </Store>
   );
 }
 export default App;
