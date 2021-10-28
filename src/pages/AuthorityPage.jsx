@@ -7,6 +7,7 @@ import { Footer, ResultCard } from "../components";
 import "../style.css";
 import { useParams } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
 function AuthorityPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
@@ -116,6 +117,10 @@ function AuthorityPage({ children }) {
       </Footer>
     </>
   );
+}
+
+AuthorityPage.propTypes = {
+  children: PropTypes.element
 }
 
 export default AuthorityPage;

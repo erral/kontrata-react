@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Footer, ResultCard } from "../components";
 import "../style.css";
 import { useIntl } from "react-intl";
+import PropTypes from "prop-types";
 
 function HomePage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
@@ -251,5 +252,10 @@ function HomePage({ children }) {
     </>
   );
 }
+
+HomePage.propTypes = {
+  children: PropTypes.element
+}
+
 
 export default HomePage;

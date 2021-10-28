@@ -5,6 +5,7 @@ import Icon from "./Icon";
 import { LANGUAGES } from "../constants";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function LanguageSelector({ icon, route, lang }) {
   const [state, dispatch] = useContext(Context);
@@ -55,5 +56,11 @@ function LanguageSelector({ icon, route, lang }) {
     </NavDropdown>
   );
 }
+
+LanguageSelector.propTypes = {
+  icon: PropTypes.string,
+  language: PropTypes.string,
+  route: PropTypes.string,
+};
 
 export default LanguageSelector;

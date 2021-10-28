@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar as BootstrapNavbar, Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 function Navbar({ children }) {
   return (
@@ -13,6 +14,10 @@ function Navbar({ children }) {
       </Container>
     </BootstrapNavbar>
   );
+}
+
+Navbar.propTypes = {
+  children: PropTypes.element
 }
 
 export default Navbar;
