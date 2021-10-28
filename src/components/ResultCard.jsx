@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
+import routes from "../routes";
 
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
@@ -21,7 +22,14 @@ function ResultCard({ result_item, card_classname, on_click }) {
           <br />
           <FormattedMessage id="Authority:" defaultMessage="Authority:" />{" "}
           {result_item.authority?.cif ? (
-            <Link to={{ pathname: "/es/empresa/" + result_item.authority.cif }}>
+            <Link
+              to={{
+                pathname: routes.company["es"].replace(
+                  ":cif",
+                  result_item.authority.cif
+                ),
+              }}
+            >
               {result_item.authority.name}
             </Link>
           ) : (

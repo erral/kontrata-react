@@ -5,7 +5,7 @@ import { LANGUAGES } from "../constants";
 import { useHistory } from "react-router";
 
 function LanguageSelector({ icon, language, setLanguage, route }) {
-  const { path } = route;
+  const path = route[language];
   useEffect(() => {
     setLanguage(path.match(/^\/([a-zA-Z]+).*$/)[1]);
   }, [path, setLanguage]);
@@ -26,7 +26,7 @@ function LanguageSelector({ icon, language, setLanguage, route }) {
         return (
           <NavDropdown.Item
             key={key}
-            onClick={() => redirect(route.sibling ? route.sibling : `/${key}`)}
+            onClick={() => redirect(route[key] ? route[key] : `/${key}`)}
           >
             {value.toString()}
           </NavDropdown.Item>
