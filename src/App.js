@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import { IntlProvider } from "react-intl";
@@ -11,7 +11,6 @@ import { Nav } from "react-bootstrap";
 import { LANGUAGES } from "./constants";
 
 import { ReactiveBase } from "@appbaseio/reactivesearch";
-import { Context } from "../Store";
 
 import {
   REACT_APP_ELASTIC_SCHEME,
@@ -26,12 +25,11 @@ const messages = {
 };
 
 function App() {
-  const [state] = useContext(Context);
   return (
     <Store>
       <BrowserRouter>
         <Route exact path="/">
-          <Redirect to={"/" + state.language} />
+          <Redirect to={"/" + Object.keys(LANGUAGES)[0]} />
         </Route>
         <Switch>
           {Object.keys(routes).map((routeKey) => {
