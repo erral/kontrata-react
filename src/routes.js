@@ -2,7 +2,7 @@ import { LANGUAGES } from "./constants";
 import HomePage from "./pages/HomePage";
 import CompanyPage from "./pages/CompanyPage";
 import AuthorityPage from "./pages/AuthorityPage";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const language_independent_routes = {
   languageroot: { component: () => <HomePage /> },
@@ -23,12 +23,12 @@ const language_dependant_routes = {
     es: `/es/administracion/:param`,
   },
   base_company: {
-    component: () => <Redirect to="/" />,
+    component: () => <Navigate to="/" />,
     eu: `/eu/enpresa`,
     es: `/es/empresa`,
   },
   base_authority: {
-    component: () => <Redirect to="/" />,
+    component: () => <Navigate to="/" />,
     eu: `/eu/admninistrazioa`,
     es: `/es/administracion`,
   },

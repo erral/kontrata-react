@@ -3,7 +3,7 @@ import { Context } from "../Store";
 import { NavDropdown } from "react-bootstrap";
 import Icon from "./Icon";
 import { LANGUAGES } from "../constants";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -16,12 +16,11 @@ function LanguageSelector({ icon, route, lang }) {
       type: "SET_LANGUAGE",
       data: path.match(/^\/([a-zA-Z]+).*$/)[1],
     });
-    /* eslint-disable-next-line */
-  }, []);
+  }, [path, dispatch]);
 
-  let history = useHistory();
+  let navigate = useNavigate();
   const redirect = (path) => {
-    history.push(path);
+    navigate(path);
   };
   return (
     <NavDropdown
@@ -33,6 +32,9 @@ function LanguageSelector({ icon, route, lang }) {
       id="basic-nav-dropdown"
     >
       {Object.entries(LANGUAGES).map(([key, value]) => {
+        if (key === lang) {
+          return null;
+        }
         return (
           <NavDropdown.Item
             key={key}

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   DataSearch,
+  ResultList,
   SingleList,
   ReactiveList,
   MultiRange,
@@ -32,6 +33,10 @@ function HomePage({ children }) {
                 id: "Authority",
                 defaultMessage: "Authority",
               })}
+              innerClass={{
+                title: "search-title",
+                input: "search-input",
+              }}
               sortBy="asc"
               size={10000}
               URLParams={true}
