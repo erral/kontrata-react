@@ -4,13 +4,15 @@ import { NavDropdown } from "react-bootstrap";
 import Icon from "./Icon";
 import { LANGUAGES } from "../constants";
 import { useNavigate } from "react-router";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function LanguageSelector({ icon, route, lang }) {
   const [state, dispatch] = useContext(Context);
   const path = route[lang];
-  const location = useLocation();
+  const params = useParams();
+  const path_params = new RegExp(`\/:(.*)$`);
+
   useEffect(() => {
     dispatch({
       type: "SET_LANGUAGE",
@@ -35,6 +37,7 @@ function LanguageSelector({ icon, route, lang }) {
         if (key === lang) {
           return null;
         }
+        const route_param = route[key].match(path_params);
         return (
           <NavDropdown.Item
             key={key}
@@ -42,10 +45,10 @@ function LanguageSelector({ icon, route, lang }) {
               dispatch({ type: "SET_LANGUAGE", language: key });
               redirect(
                 route[key]
-                  ? route[key].includes(":param")
+                  ? route_param
                     ? route[key].replace(
-                        ":param",
-                        location.pathname.split("/").pop()
+                        path_params,
+                        `/${params[route_param[1]]}`
                       )
                     : route[key]
                   : `/${key}`
