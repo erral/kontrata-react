@@ -11,7 +11,7 @@ function LanguageSelector({ icon, route, lang }) {
   const [state, dispatch] = useContext(Context);
   const path = route[lang];
   const params = useParams();
-  const path_params = new RegExp(`\/:(.*)$`);
+  const path_params = new RegExp(`/:(.*)$`);
 
   useEffect(() => {
     dispatch({
