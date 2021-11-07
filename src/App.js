@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { IntlProvider } from "react-intl";
 import messages_eu from "./locales/eu.json";
@@ -28,35 +28,40 @@ function App() {
   return (
     <Store>
       <BrowserRouter>
-        <Route exact path="/">
-          <Redirect to={"/" + Object.keys(LANGUAGES)[0]} />
-        </Route>
-        <Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to={"/" + Object.keys(LANGUAGES)[0]} />}
+          />
           {Object.keys(routes).map((routeKey) => {
             let route = routes[routeKey];
             return Object.keys(LANGUAGES).map((lang) => {
               return (
-                <Route key={routeKey + lang} path={route[lang]}>
-                  <IntlProvider locale={lang} messages={messages?.[lang]}>
-                    <Navbar>
-                      <LanguageSelector route={route} lang={lang} />
-                      <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank">
-                        <Icon name="github" size="28px" />
-                      </Nav.Link>
-                      <DarkModeToggle />
-                    </Navbar>
-                    <ReactiveBase
-                      url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}/`}
-                      app={"contracts_" + lang}
-                    >
-                      <route.component />
-                    </ReactiveBase>
-                  </IntlProvider>
-                </Route>
+                <Route
+                  key={routeKey + lang}
+                  path={route[lang]}
+                  element={
+                    <IntlProvider locale={lang} messages={messages?.[lang]}>
+                      <Navbar>
+                        <LanguageSelector route={route} lang={lang} />
+                        <Nav.Link href={EXTERNAL_LINKS.GITHUB} target="_blank">
+                          <Icon name="github" size="28px" />
+                        </Nav.Link>
+                        <DarkModeToggle />
+                      </Navbar>
+                      <ReactiveBase
+                        url={`${REACT_APP_ELASTIC_SCHEME}://${REACT_APP_ELASTIC_HOST}:${REACT_APP_ELASTIC_PORT}/`}
+                        app={"contracts_" + lang}
+                      >
+                        <route.component />
+                      </ReactiveBase>
+                    </IntlProvider>
+                  }
+                />
               );
             });
           })}
-        </Switch>
+        </Routes>
       </BrowserRouter>
     </Store>
   );

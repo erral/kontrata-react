@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { DataSearch, ReactiveList } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,9 +13,9 @@ function CompanyPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
   const handleClose = () => setModalContent(null);
   const handleShow = (content) => setModalContent(content);
-  let { param } = useParams();
-  if (param === "") {
-    <Redirect to="/" />;
+  let { cif } = useParams();
+  if (cif === "") {
+    <Navigate to="/" />;
   }
 
   const customQuery = function () {
@@ -23,7 +23,7 @@ function CompanyPage({ children }) {
       query: {
         match: {
           "winner_0.cif.keyword": {
-            query: param,
+            query: cif,
           },
         },
       },
@@ -120,7 +120,7 @@ function CompanyPage({ children }) {
 }
 
 CompanyPage.propTypes = {
-  children: PropTypes.element
-}
+  children: PropTypes.element,
+};
 
 export default CompanyPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { DataSearch, ReactiveList } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +15,7 @@ function AuthorityPage({ children }) {
   const handleShow = (content) => setModalContent(content);
   let { param } = useParams();
   if (param === "") {
-    <Redirect to="/" />;
+    <Navigate to="/" />;
   }
 
   const customQuery = function () {
@@ -120,7 +120,7 @@ function AuthorityPage({ children }) {
 }
 
 AuthorityPage.propTypes = {
-  children: PropTypes.element
-}
+  children: PropTypes.element,
+};
 
 export default AuthorityPage;
