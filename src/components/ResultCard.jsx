@@ -33,7 +33,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
             <Link
               to={{
                 pathname:
-                  routes.base_company[state.language] +
+                  routes.base_authority[state.language] +
                   "/" +
                   result_item.authority?.cif,
               }}
