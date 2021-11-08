@@ -10,10 +10,16 @@ import PropTypes from "prop-types";
 function ResultCard({ result_item, card_classname, on_click }) {
   const card_class = card_classname || "mb-2";
   const numberFormat = (value) =>
-    new Intl.NumberFormat("es-ES", {
+    new Intl.NumberFormat(`es-ES`, {
       style: "currency",
       currency: "EUR",
     }).format(value);
+  const dateFormat = (date) =>
+    new Intl.DateTimeFormat(`es-ES`, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date(date));
   const [state] = useContext(Context);
   return (
     <Card className={card_class}>
@@ -37,6 +43,12 @@ function ResultCard({ result_item, card_classname, on_click }) {
           ) : (
             result_item.authority.name
           )}
+          <br />
+          <FormattedMessage
+            id="Adjudication date:"
+            defaultMessage="Adjudication date:"
+          />{" "}
+          {dateFormat(result_item.adjudication_date)}
           <br />
           <FormattedMessage id="Budget:" defaultMessage="Budget:" />{" "}
           {numberFormat(result_item.budget)}
