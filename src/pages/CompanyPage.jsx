@@ -13,8 +13,8 @@ function CompanyPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
   const handleClose = () => setModalContent(null);
   const handleShow = (content) => setModalContent(content);
-  let { cif } = useParams();
-  if (cif === "") {
+  let { slug } = useParams();
+  if (slug === "") {
     <Navigate to="/" />;
   }
 
@@ -22,8 +22,8 @@ function CompanyPage({ children }) {
     return {
       query: {
         match: {
-          "winner_0.cif.keyword": {
-            query: cif,
+          "winner_0.slug.keyword": {
+            query: slug,
           },
         },
       },
@@ -39,6 +39,7 @@ function CompanyPage({ children }) {
               dataField={["title", "offerers.name"]}
               customQuery={customQuery}
               autosuggest={false}
+              searchOperators={true}
             />
 
             <ReactiveList

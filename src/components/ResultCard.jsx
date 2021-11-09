@@ -35,7 +35,7 @@ function ResultCard({ result_item, card_classname, on_click }) {
                 pathname:
                   routes.base_authority[state.language] +
                   "/" +
-                  result_item.authority?.code,
+                  result_item.authority?.slug,
               }}
             >
               {result_item.authority.name}
@@ -66,8 +66,8 @@ function ResultCard({ result_item, card_classname, on_click }) {
           )}
           <br />
           <FormattedMessage id="Winner:" defaultMessage="Winner:" />{" "}
-          {result_item.winner_0?.cif ? (
-            <Link to={"/es/empresa/" + result_item.winner_0.cif}>
+          {result_item.winner_0?.slug ? (
+            <Link to={"/es/empresa/" + result_item.winner_0.slug}>
               {result_item.winner_0?.name}
             </Link>
           ) : (
@@ -84,8 +84,8 @@ function ResultCard({ result_item, card_classname, on_click }) {
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map((offerer) => (
                   <li>
-                    {offerer.cif ? (
-                      <Link to={{ pathname: "/es/empresa/" + offerer.cif }}>
+                    {offerer.slug ? (
+                      <Link to={{ pathname: "/es/empresa/" + offerer.slug }}>
                         {offerer.name}
                       </Link>
                     ) : (
