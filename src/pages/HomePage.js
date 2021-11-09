@@ -6,6 +6,7 @@ import {
   MultiRange,
   SelectedFilters,
   SingleDataList,
+  DateRange,
 } from "@appbaseio/reactivesearch";
 import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,6 +26,28 @@ function HomePage({ children }) {
       <Container>
         <Row>
           <Col md={4}>
+            <DateRange
+              componentId="DateSensor"
+              dataField="adjudication_date"
+              title={intl.formatMessage({
+                id: "Adjudication date",
+                defaultMessage: "Adjudication date",
+              })}
+              numberOfMonths={1}
+              URLParams={true}
+              react={{
+                and: [
+                  "Status",
+                  "Type",
+                  "MinorContract",
+                  "PriceSensor",
+                  "BudgetSensor",
+                  "SearchSensor",
+                  "Authority",
+                ],
+              }}
+            />
+
             <SingleList
               componentId="Authority"
               dataField="authority.name.keyword"
@@ -47,6 +70,7 @@ function HomePage({ children }) {
                   "PriceSensor",
                   "BudgetSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -68,6 +92,7 @@ function HomePage({ children }) {
                   "PriceSensor",
                   "BudgetSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -89,6 +114,7 @@ function HomePage({ children }) {
                   "PriceSensor",
                   "BudgetSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -116,6 +142,7 @@ function HomePage({ children }) {
                   "PriceSensor",
                   "BudgetSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -142,6 +169,7 @@ function HomePage({ children }) {
                   "MinorContract",
                   "BudgetSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -168,6 +196,7 @@ function HomePage({ children }) {
                   "MinorContract",
                   "PriceSensor",
                   "SearchSensor",
+                  "DateSensor",
                 ],
               }}
             />
@@ -196,6 +225,7 @@ function HomePage({ children }) {
                   "BudgetSensor",
                   "SearchSensor",
                   "MinorContract",
+                  "DateSensor",
                 ],
               }}
               sortOptions={[
@@ -207,6 +237,16 @@ function HomePage({ children }) {
                 {
                   label: "Price (low to high)",
                   dataField: "resolution_0.priceWithVAT",
+                  sortBy: "asc",
+                },
+                {
+                  label: "Adjudication date (descending",
+                  dataField: "adjudication_date",
+                  sortBy: "desc",
+                },
+                {
+                  label: "Adjudication date (ascending)",
+                  dataField: "adjudication_date",
                   sortBy: "asc",
                 },
               ]}
