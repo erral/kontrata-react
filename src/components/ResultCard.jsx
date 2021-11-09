@@ -29,13 +29,13 @@ function ResultCard({ result_item, card_classname, on_click }) {
           <FormattedMessage id="ID:" defaultMessage="ID:" /> {result_item.id}
           <br />
           <FormattedMessage id="Authority:" defaultMessage="Authority:" />{" "}
-          {result_item.authority?.cif ? (
+          {result_item.authority?.code ? (
             <Link
               to={{
                 pathname:
                   routes.base_authority[state.language] +
                   "/" +
-                  result_item.authority?.cif,
+                  result_item.authority?.code,
               }}
             >
               {result_item.authority.name}
