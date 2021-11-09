@@ -13,8 +13,8 @@ function AuthorityPage({ children }) {
   const [modalContent, setModalContent] = React.useState(null);
   const handleClose = () => setModalContent(null);
   const handleShow = (content) => setModalContent(content);
-  let { param } = useParams();
-  if (param === "") {
+  let { cif } = useParams();
+  if (cif === "") {
     <Navigate to="/" />;
   }
 
@@ -23,7 +23,7 @@ function AuthorityPage({ children }) {
       query: {
         match: {
           "authority.cif.keyword": {
-            query: param,
+            query: cif,
           },
         },
       },
