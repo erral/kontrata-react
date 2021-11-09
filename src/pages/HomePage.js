@@ -207,6 +207,7 @@ function HomePage({ children }) {
               dataField={["title", "offerers.name", "winner_0.name"]}
               autosuggest={false}
               URLParams={true}
+              searchOperators={true}
             />
 
             <SelectedFilters />

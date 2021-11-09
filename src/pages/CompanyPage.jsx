@@ -39,6 +39,7 @@ function CompanyPage({ children }) {
               dataField={["title", "offerers.name"]}
               customQuery={customQuery}
               autosuggest={false}
+              searchOperators={true}
             />
 
             <ReactiveList
