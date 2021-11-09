@@ -22,7 +22,7 @@ function AuthorityPage({ children }) {
     return {
       query: {
         match: {
-          "authority.cif.keyword": {
+          "authority.code.keyword": {
             query: cif,
           },
         },
